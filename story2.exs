@@ -3,9 +3,10 @@ defmodule Story do
     String.strip IO.gets("What is your name? ")
   end
 
-  def load_story do
-    case File.read("./stories/story1.eex") do
-      {:ok, result} -> result
+  def load_file(file) do
+    case File.read(file) do
+      {:ok, result} -> String.split(result, " ")
+                        |> Enum.filter(fn(n) -> n != "" end)
       {:error, reason} -> IO.puts "Error reading file"
     end
   end
@@ -26,13 +27,13 @@ defmodule Story do
   end
 
   def random(word_type) do
-    names = ~w{Keith Tanya Oksana Antonia Barbara Bob Richard Mickel}
-    nouns = ~w{cup shoe hair cock balls vagina}
-    adjectives = ~w{dishonest dogmatic domineering finicky flirtatious foolish foolhardy fussy greedy grumpy gullible harsh impatient impolite impulsive inconsiderate inconsistent indecisive indiscreet inflexible interfering intolerant irresponsible beautiful ugly great fat smelly}
-    characters = ~w{cat dog girl boy princess prince hedgehog frog fly mouse worm}
-    relatives = ~w{father mother sister uncle}
-    verbs = ~w{eat watch touch smell rub lick}
-    numbers = ~w{23 45 34 62}
+    names = load_file("./words/names")
+    nouns = load_file("./words/nouns")
+    adjectives = load_file("./words/adjectives")
+    characters = load_file("./words/characters")
+    relatives = load_file("./words/relatives")
+    verbs = load_file("./words/verbs")
+    numbers = load_file("./words/numbers")
 
     case word_type do
       :name      -> Enum.random(names)

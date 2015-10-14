@@ -1,2 +1,0 @@
-<%= random.(:adjective) %>
-<%= random.(:nouns) %>
