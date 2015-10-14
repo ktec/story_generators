@@ -1,4 +1,29 @@
 defmodule Story do
+  # docstring are quite useful you can generate docs out of them
+  # check: http://elixir-lang.org/getting-started/module-attributes.html
+  # for more info
+  @doc """
+  Gets name from standard IO
+  """
+  def get_name do
+    String.strip IO.gets("What is your name? ")
+  end
+
+  # def get_cow_lover do
+  #   IO.getn("Do you like cows? [y|n]", 1)
+  # end
+  #
+  # def interrogate do
+  #   case String.downcase(get_cow_lover) do
+  #     "y" ->
+  #       IO.puts "Yes you like cows"
+  #     "n" ->
+  #       IO.puts "No you dont"
+  #     _ ->
+  #       IO.puts "You should have entered 'Y' or 'N'."
+  #   end
+  # end
+
   def create do
     :random.seed(:os.timestamp)
 
@@ -11,6 +36,8 @@ defmodule Story do
     # IO.puts "His very #{Enum.random(adjectives)} #{Enum.random(nouns)} was made of #{Enum.random(adjectives)} #{Enum.random(nouns)} which #{Enum.random(verbs)}."
     # IO.puts "A lady gets on a public bus. Without saying a word, she gestures to the bus driver by sticking her thumb on her nose and waving her fingers at the driver."
 
+    # interrogate
+
     names = ~w{Keith Tanya Oksana Antonia Barbara Bob Richard Mickel}
     characters = ~w{cat dog girl boy princess prince hedgehog frog fly mouse worm}
     adjectives = ~w{dishonest dogmatic domineering finicky flirtatious foolish foolhardy fussy greedy grumpy gullible harsh impatient impolite impulsive inconsiderate inconsistent indecisive indiscreet inflexible interfering intolerant irresponsible beautiful ugly great fat smelly}
@@ -20,7 +47,7 @@ defmodule Story do
     nouns = ~w{cup shoe hair cock balls vagina}
 
     character_1 = Enum.random(characters)
-    name_1 = Enum.random(names)
+    name_1 = get_name
     name_2 = Enum.random(names)
     character_2 = Enum.random(characters)
 
